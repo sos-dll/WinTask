@@ -29,8 +29,9 @@ using (var task = WinTask.With(TaskName)                 // Get existing -or- cr
 ## Create a (special) monthly task
 For example, if you wanted to create a task which is run on 26th February, and on 30th for every other month:
 ```cs
-const string MonthlyTask = "MyMonthlyTask";
-using (var task = WinTask.With(MonthlyTask)
+const string TaskName = "MyMonthlyTask";
+string exePath = new FileInfo(Assembly.GetExecutingAssembly().Location).FullName; // A full path of this program, which will be executed on monthly basis.
+using (var task = WinTask.With(TaskName)
                          .Description("The monthly task")
                          .RemoveTriggers()
                          .MonthlyTrigger(26, MonthsOfTheYear.February)
